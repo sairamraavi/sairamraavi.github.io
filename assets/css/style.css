@@ -1,0 +1,234 @@
+/* Main custom styles for Sairam Raavi Portfolio */
+body {
+  font-family: 'Poppins', 'DM Sans', Arial, sans-serif;
+  background: linear-gradient(120deg, #E6F0FF 0%, #B0C4DE 100%);
+  color: #222;
+  min-height: 100vh;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+.navbar {
+  font-family: 'Poppins', sans-serif;
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 4px 24px #B0C4DE33;
+  border-radius: 18px;
+  margin-top: 18px;
+  transition: box-shadow 0.3s, background 0.3s;
+}
+.navbar .navbar-brand {
+  font-size: 1.6rem;
+  letter-spacing: 2px;
+  color: #007bff;
+  text-shadow: 0 2px 12px #B0C4DE44;
+}
+.navbar-nav .nav-link {
+  font-size: 1.1rem;
+  margin: 0 0.5rem;
+  border-radius: 8px;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+.navbar-nav .nav-link.active,
+.navbar-nav .nav-link:hover {
+  background: linear-gradient(90deg, #E6F0FF 60%, #B0C4DE 100%);
+  color: #007bff !important;
+  box-shadow: 0 2px 12px #B0C4DE44;
+}
+
+.hero-section {
+  position: relative;
+  min-height: 80vh;
+  background: linear-gradient(120deg, #E6F0FF 60%, #B0C4DE 100%);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero-bg {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: radial-gradient(circle at 60% 40%, #B0C4DE55 0%, #E6F0FF00 70%), url('../img/hero-bg.svg') center/cover no-repeat;
+  opacity: 0.22;
+  z-index: 0;
+  pointer-events: none;
+  filter: blur(2px);
+  animation: bgMove 12s linear infinite alternate;
+}
+@keyframes bgMove {
+  0% { transform: translateY(0) scale(1); }
+  100% { transform: translateY(-20px) scale(1.03); }
+}
+#animated-headline {
+  font-size: 3.2rem;
+  letter-spacing: 2px;
+  color: #222;
+  text-shadow: 0 2px 24px #B0C4DE44;
+  animation: headlineReveal 1.2s cubic-bezier(.77,0,.18,1) forwards;
+  background: linear-gradient(90deg, #B0C4DE 40%, #E6F0FF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+@keyframes headlineReveal {
+  0% { opacity: 0; transform: translateY(40px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+#animated-role {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1.6rem;
+  color: #007bff;
+  animation: roleTypewriter 2s steps(20) 0.5s forwards;
+  opacity: 0;
+  text-shadow: 0 2px 12px #B0C4DE44;
+}
+@keyframes roleTypewriter {
+  0% { width: 0; opacity: 0; }
+  100% { width: 100%; opacity: 1; }
+}
+.hero-section .btn {
+  font-size: 1.1rem;
+  padding: 0.75rem 2.2rem;
+  border-radius: 32px;
+  box-shadow: 0 4px 24px #B0C4DE33;
+  background: linear-gradient(90deg, #E6F0FF 60%, #B0C4DE 100%);
+  color: #007bff;
+  border: none;
+  transition: box-shadow 0.3s, background 0.3s, color 0.3s;
+}
+.hero-section .btn:hover {
+  background: linear-gradient(90deg, #B0C4DE 60%, #E6F0FF 100%);
+  color: #222;
+  box-shadow: 0 8px 32px #B0C4DE44, 0 0 16px #007bff66;
+}
+
+.about-section img {
+  max-width: 320px;
+  border-radius: 24px;
+  box-shadow: 0 8px 32px #B0C4DE33, 0 0 0 8px #E6F0FF88;
+  border: 2px solid #E6F0FF;
+  background: rgba(255,255,255,0.7);
+}
+
+.timeline {
+  position: relative;
+  margin-left: 2rem;
+}
+.timeline-block {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+.timeline-dot {
+  width: 18px; height: 18px;
+  background: linear-gradient(135deg, #007bff 60%, #B0C4DE 100%);
+  border-radius: 50%;
+  margin-right: 1rem;
+  box-shadow: 0 2px 12px #B0C4DE44, 0 0 8px #007bff88;
+  border: 2px solid #E6F0FF;
+}
+.timeline-content {
+  background: rgba(255,255,255,0.85);
+  padding: 1rem 1.5rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px #B0C4DE22;
+  border: 1px solid #E6F0FF;
+  backdrop-filter: blur(6px);
+}
+
+.project-card.placeholder-card {
+  background: linear-gradient(120deg, #E6F0FF 80%, #B0C4DE 100%);
+  border: 2px dashed #B0C4DE;
+  border-radius: 18px;
+  box-shadow: 0 4px 24px #B0C4DE22;
+  transition: box-shadow 0.3s, border-color 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+.project-card.placeholder-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: radial-gradient(circle at 60% 40%, #B0C4DE33 0%, #E6F0FF00 70%);
+  opacity: 0.3;
+  pointer-events: none;
+}
+.project-card.placeholder-card:hover {
+  box-shadow: 0 8px 32px #B0C4DE44, 0 0 16px #007bff66;
+  border-color: #007bff;
+}
+
+.blog-card {
+  background: rgba(255,255,255,0.92);
+  border-radius: 18px;
+  box-shadow: 0 2px 12px #B0C4DE22;
+  border: 1px solid #E6F0FF;
+  transition: box-shadow 0.3s, transform 0.3s, border-color 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+.blog-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: radial-gradient(circle at 60% 40%, #B0C4DE33 0%, #E6F0FF00 70%);
+  opacity: 0.2;
+  pointer-events: none;
+}
+.blog-card:hover {
+  box-shadow: 0 8px 32px #B0C4DE44, 0 0 16px #007bff66;
+  transform: translateY(-6px) scale(1.03);
+  border-color: #007bff;
+}
+
+.contact-section form {
+  background: rgba(255,255,255,0.92);
+  box-shadow: 0 8px 32px #B0C4DE22;
+  border-radius: 18px;
+  border: 1px solid #E6F0FF;
+  backdrop-filter: blur(6px);
+}
+.contact-section .form-control:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px #B0C4DE44;
+}
+.contact-section button[type="submit"] {
+  font-size: 1.1rem;
+  padding: 0.75rem 2.2rem;
+  border-radius: 32px;
+  box-shadow: 0 4px 24px #B0C4DE33;
+  background: linear-gradient(90deg, #E6F0FF 60%, #B0C4DE 100%);
+  color: #007bff;
+  border: none;
+  transition: box-shadow 0.3s, background 0.3s, color 0.3s;
+}
+.contact-section button[type="submit"]:hover {
+  background: linear-gradient(90deg, #B0C4DE 60%, #E6F0FF 100%);
+  color: #222;
+  box-shadow: 0 8px 32px #B0C4DE44, 0 0 16px #007bff66;
+}
+
+.footer {
+  font-family: 'DM Sans', sans-serif;
+  background: rgba(255,255,255,0.92);
+  border-top: 1px solid #E6F0FF;
+  box-shadow: 0 -2px 12px #B0C4DE22;
+  border-radius: 18px 18px 0 0;
+  backdrop-filter: blur(6px);
+}
+.footer a {
+  transition: color 0.2s, text-shadow 0.2s;
+  border-radius: 8px;
+  padding: 2px 8px;
+}
+.footer a:hover {
+  color: #007bff;
+  text-shadow: 0 2px 12px #B0C4DE44;
+  background: linear-gradient(90deg, #E6F0FF 60%, #B0C4DE 100%);
+}
+
+@media (max-width: 768px) {
+  .hero-section { min-height: 60vh; }
+  #animated-headline { font-size: 2.2rem; }
+  .about-section img { max-width: 180px; }
+  .navbar { margin-top: 0; border-radius: 0; }
+}
