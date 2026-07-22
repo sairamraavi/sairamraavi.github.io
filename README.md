@@ -41,7 +41,7 @@ Draft blog entries remain “Coming soon” previews. Do not add a draft URL to 
 
 1. Open the repository and choose **Settings → Pages**.
 2. Set **Build and deployment** source to **GitHub Actions**.
-3. Push to `main` and confirm the deployment workflow in the Actions tab.
+3. Push to `master` and confirm the deployment workflow in the Actions tab.
 4. Open `https://sairamraavi.github.io`.
 
 For a failed deployment, open the failed Actions run and inspect the failing lint, type-check or build step. The workflow uploads `./out` only after all checks pass.
