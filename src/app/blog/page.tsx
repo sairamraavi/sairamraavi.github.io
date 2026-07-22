@@ -1,0 +1,3 @@
+import Link from "next/link";
+import { posts } from "@/data/blog";
+export default function Blog(){return <main className="blog-page"><a className="brand" href="/">SR<span>.</span></a><p className="eyebrow">Writing / In progress</p><h1>Notes from the engineering path.</h1><p className="lede">Draft articles documenting practical systems work, implementation choices and lessons learned.</p><div className="blog-list">{posts.map(p=><article key={p.slug}><p className="eyebrow">{p.category} · Coming soon</p><h2>{p.title}</h2><p>{p.description}</p><div className="tags">{p.tags.map(t=><span key={t}>{t}</span>)}</div><Link className="text-link" href={`/blog/${p.slug}/`}>View draft preview</Link></article>)}</div></main>}
