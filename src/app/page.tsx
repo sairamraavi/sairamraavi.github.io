@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { ArrowDown, ArrowUpRight, CheckCircle2, Download, MapPin } from "lucide-react";
-import { ContactIcons, ExternalLink, Nav } from "@/components/site";
+import { ExternalLink, Nav } from "@/components/site";
+import { ContactSection } from "@/components/contact";
 import { ProjectShowcase } from "@/components/projects";
 import { experience } from "@/data/experience";
 import { profile } from "@/data/profile";
@@ -23,7 +24,7 @@ export default function Home() {
       <section id="blog" className="section blog-preview"><div className="section-label">07 / Writing</div><div><h2>Notes from the learning path.</h2><p className="section-intro">Drafts in progress—written to document systems work as it evolves.</p><div className="project-grid">{["From Full-Stack Development to DevOps: My Learning Roadmap", "Building a Jenkins CI/CD Pipeline for Flask on AWS", "Deploying a Containerized MERN Application to Amazon EKS"].map((title, i) => <article className="project-card" key={title}><p className="eyebrow">{["Career", "CI/CD", "Kubernetes"][i]} · Coming soon</p><h3>{title}</h3><p>Draft article documenting practical learning, tradeoffs and implementation notes.</p><a className="text-link" href="/blog/">Browse drafts <ArrowUpRight size={16} /></a></article>)}</div></div></section>
       <section className="section github"><div className="section-label">08 / Open source</div><div><h2>Build notes live on GitHub.</h2><p>Explore project repositories spanning Docker, Jenkins, AWS, Kubernetes, Terraform and full-stack service patterns.</p><ExternalLink href={profile.github}>View all repositories</ExternalLink></div></section>
       <section className="section education"><div className="section-label">09 / Education & credentials</div><div className="credential"><div><p className="eyebrow">Education</p><h2>B.Tech in Electronics & Communication Engineering</h2><p>NRI Institute of Technology · Graduated 2016</p></div><div><p className="eyebrow">Credentials</p><p><b>DevOps learning program</b> — In progress</p><p>Future AWS and Kubernetes certifications — Planned</p></div></div></section>
-      <section id="contact" className="section contact"><div><p className="eyebrow">10 / Contact</p><h2>Let’s build reliable products and better delivery systems.</h2><p>For senior full-stack and DevOps-focused opportunities, I’d be glad to connect.</p><ContactIcons /></div><form action={`mailto:${profile.email}`} method="post" encType="text/plain"><label>Name<input required name="name" autoComplete="name" /></label><label>Email<input required name="email" type="email" autoComplete="email" /></label><label>Subject<input required name="subject" /></label><label>Message<textarea required name="message" rows={4} /></label><button className="button primary" type="submit">Send via email <ArrowUpRight size={17} /></button><small>Your email client will open to send this message. Please do not include sensitive information.</small></form></section>
+      <ContactSection />
     </main><footer><div><b>{profile.name}</b><span>Senior Full-Stack Engineer</span></div><div><a href="/blog/">Blog</a><a href="/resume/sairam-raavi-resume.pdf">Résumé</a><a href={profile.github}>GitHub</a><a href={`mailto:${profile.email}`}>Email</a></div><p>© {new Date().getFullYear()} · Designed and engineered with Next.js and TypeScript</p></footer>
   </>;
 }
