@@ -1,0 +1,1 @@
+.brand{display:inline-flex;align-items:center;gap:.6rem;letter-spacing:-.04em}.brand img{display:block;width:34px;height:34px;border-radius:9px}.brand-name{font-size:.96rem;letter-spacing:-.03em}.brand>span{color:var(--ink)}@media(max-width:460px){.brand-name{display:none}.brand img{width:36px;height:36px}}
