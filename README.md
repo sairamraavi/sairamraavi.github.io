@@ -33,7 +33,7 @@ The static export is generated in `out/`.
 - Projects: `src/data/projects.ts`
 - Blog metadata: `src/data/blog.ts`; draft Markdown sources: `src/content/blog/`
 - Profile image: replace `public/images/sairam-profile.jpeg`
-- Résumé: replace `public/resume/sairam-raavi-resume.pdf`
+- Resume: replace `public/resume/sairam-raavi-resume.pdf`
 
 Draft blog entries remain “Coming soon” previews. Do not add a draft URL to the sitemap until it is published.
 
