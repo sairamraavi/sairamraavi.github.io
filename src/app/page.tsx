@@ -246,11 +246,11 @@ export default function Home() {
                 <p>How I am extending application engineering experience into cloud delivery, automation and platform reliability through hands-on work.</p>
                 <a className="text-link" href="/blog/full-stack-to-devops-roadmap/">Read article <ArrowUpRight size={16} /></a>
               </article>
-              <article className="project-card">
-                <p className="eyebrow">CI/CD · Coming soon</p>
-                <h3>Building a Jenkins CI/CD Pipeline for Flask on AWS</h3>
-                <p>Draft article documenting practical learning, tradeoffs and implementation notes.</p>
-                <a className="text-link" href="/blog/">Browse drafts <ArrowUpRight size={16} /></a>
+              <article className="project-card published-post">
+                <p className="eyebrow">CI/CD · Published</p>
+                <h3>Building a Production-Ready Jenkins CI/CD Pipeline for Flask on AWS</h3>
+                <p>A concrete Jenkins, Docker, ECR and Nginx deployment path for a Flask service on AWS EC2.</p>
+                <a className="text-link" href="/blog/jenkins-flask-aws/">Read article <ArrowUpRight size={16} /></a>
               </article>
             </div>
           </div>
