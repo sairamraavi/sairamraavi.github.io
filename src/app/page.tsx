@@ -240,24 +240,18 @@ export default function Home() {
                 <p>How to choose a trigger, shape a handler, keep permissions narrow and operate a Lambda function once it reaches production.</p>
                 <a className="text-link" href="/blog/aws-lambda-practical-guide/">Read article <ArrowUpRight size={16} /></a>
               </article>
-              {[
-                "From Full-Stack Development to DevOps: My Learning Roadmap",
-                "Building a Jenkins CI/CD Pipeline for Flask on AWS",
-              ].map((title, i) => (
-                <article className="project-card" key={title}>
-                  <p className="eyebrow">
-                    {["Career", "CI/CD"][i]} · Coming soon
-                  </p>
-                  <h3>{title}</h3>
-                  <p>
-                    Draft article documenting practical learning, tradeoffs and
-                    implementation notes.
-                  </p>
-                  <a className="text-link" href="/blog/">
-                    Browse drafts <ArrowUpRight size={16} />
-                  </a>
-                </article>
-              ))}
+              <article className="project-card published-post">
+                <p className="eyebrow">Career · Published</p>
+                <h3>From Full-Stack Development to DevOps: My Learning Roadmap</h3>
+                <p>How I am extending application engineering experience into cloud delivery, automation and platform reliability through hands-on work.</p>
+                <a className="text-link" href="/blog/full-stack-to-devops-roadmap/">Read article <ArrowUpRight size={16} /></a>
+              </article>
+              <article className="project-card">
+                <p className="eyebrow">CI/CD · Coming soon</p>
+                <h3>Building a Jenkins CI/CD Pipeline for Flask on AWS</h3>
+                <p>Draft article documenting practical learning, tradeoffs and implementation notes.</p>
+                <a className="text-link" href="/blog/">Browse drafts <ArrowUpRight size={16} /></a>
+              </article>
             </div>
           </div>
         </section>

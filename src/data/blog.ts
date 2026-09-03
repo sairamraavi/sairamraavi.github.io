@@ -85,10 +85,75 @@ export const posts: Post[] = [
     title: "From Full-Stack Development to DevOps: My Learning Roadmap",
     category: "Career",
     description:
-      "A practical progression from enterprise applications toward cloud and platform engineering.",
-    publishedAt: "2026-07-22",
-    tags: ["DevOps", "Career"],
-    draft: true,
+      "How I am extending a full-stack engineering foundation into cloud delivery, automation and platform reliability through hands-on work.",
+    publishedAt: "2026-09-03",
+    tags: ["DevOps", "Career", "Cloud", "Learning"],
+    sections: [
+      {
+        heading: "Why this is an extension, not a reset",
+        paragraphs: [
+          "My foundation is full-stack application engineering: turning product requirements into responsive interfaces, integrating APIs, working across Drupal, PHP, Angular and .NET systems, and helping troubleshoot releases in production. That work taught me that a feature is only useful when it can be delivered, observed and supported reliably.",
+          "DevOps is the next layer of that responsibility for me. It connects the code I build to the way it is packaged, tested, deployed, monitored and improved. The goal is not to move away from application engineering; it is to become more effective across the full path from an idea to a dependable production service.",
+        ],
+      },
+      {
+        heading: "The skills I am building on",
+        paragraphs: [
+          "The transition is easier when it starts from real engineering habits. API integration, debugging from logs, version control, reusable components and release support all carry directly into delivery work. The new challenge is to make the supporting systems explicit and repeatable.",
+        ],
+        bullets: [
+          "Designing applications with clear configuration, health checks and useful logs.",
+          "Packaging services so they run consistently across development and deployment environments.",
+          "Replacing manual release steps with reviewed, repeatable pipelines.",
+          "Treating infrastructure choices as code and documenting the reasoning behind them.",
+        ],
+      },
+      {
+        heading: "Phase 1: strengthen the operating fundamentals",
+        paragraphs: [
+          "The first phase is intentionally foundational: Linux, networking, Git workflows and containers. These are not separate DevOps topics; they are the practical language behind how modern applications run. I use hands-on labs to understand process logs, ports, environment variables, DNS, reverse proxies and the difference between a local machine working and a service being deployable.",
+          "Docker is particularly useful here. Containerizing Flask and Node.js applications has made application dependencies, build stages and runtime configuration visible. It also exposes where an application still depends on assumptions that will not hold outside a developer laptop.",
+        ],
+      },
+      {
+        heading: "Phase 2: make delivery repeatable",
+        paragraphs: [
+          "A deployment should be a dependable process, not a sequence remembered by one person. My CI/CD practice uses GitHub, Jenkins and GitHub Actions to move from source changes through checks and builds toward a deployable artifact. I focus on a small, understandable pipeline before adding complexity.",
+        ],
+        code: "source change\n  → install dependencies\n  → run tests\n  → build artifact or image\n  → publish to a registry\n  → deploy with environment configuration\n  → run a health check\n  → observe the result",
+      },
+      {
+        heading: "Phase 3: learn cloud infrastructure through projects",
+        paragraphs: [
+          "AWS gives the learning path a real operating environment. My project work has included EC2, ECR, S3, IAM, CloudWatch, EventBridge, Lambda and EKS. Rather than treating services as a checklist, I use them to answer a concrete question: what is the smallest secure and observable way to support this workload?",
+          "For example, a container delivery path can connect a GitHub change to a Jenkins build, an image registry and a Kubernetes deployment. That workflow brings together permissions, image tagging, environment configuration, rollout behaviour and monitoring—concerns that are hard to learn from a diagram alone.",
+        ],
+      },
+      {
+        heading: "Phase 4: orchestration and infrastructure as code",
+        paragraphs: [
+          "Kubernetes, Helm and Terraform are the next focus because they turn operating decisions into versioned, reviewable definitions. I am learning the trade-offs rather than assuming every application needs a large platform: deployments need sensible resource limits, services need a clear network boundary, and infrastructure needs a lifecycle that can be understood and changed safely.",
+          "The outcome I am working toward is not simply knowing the tools. It is being able to choose a proportionate approach: a managed service when it reduces operational work, a container when a workload needs it, and automation whenever a repeatable task otherwise becomes a manual risk.",
+        ],
+      },
+      {
+        heading: "How I measure progress",
+        bullets: [
+          "Can I explain an application’s path from source code to a running service?",
+          "Can a teammate reproduce the build and deployment without relying on local knowledge?",
+          "Are configuration, permissions and secrets separated from application code?",
+          "When something fails, do logs, metrics and health checks provide a useful starting point?",
+          "Can I document the trade-offs and identify the next reliability improvement?",
+        ],
+      },
+      {
+        heading: "What comes next",
+        paragraphs: [
+          "The next stage is deeper practice in observability, security-aware delivery, Kubernetes operations and platform engineering. I will continue turning each learning project into a short write-up: the architecture, what worked, what broke and what I would change next time.",
+          "This roadmap is deliberately iterative. Each project adds one more dependable piece to the delivery system while keeping the application and the user outcome at the centre. That is the kind of engineering work I want to keep growing into.",
+        ],
+      },
+    ],
   },
   {
     slug: "jenkins-flask-aws",
