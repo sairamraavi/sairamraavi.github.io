@@ -252,6 +252,12 @@ export default function Home() {
                 <p>A concrete Jenkins, Docker, ECR and Nginx deployment path for a Flask service on AWS EC2.</p>
                 <a className="text-link" href="/blog/jenkins-flask-aws/">Read article <ArrowUpRight size={16} /></a>
               </article>
+              <article className="project-card published-post">
+                <p className="eyebrow">Kubernetes · Published</p>
+                <h3>Deploying a Containerized MERN Application to Amazon EKS</h3>
+                <p>A practical source-to-ECR-to-EKS deployment path covering Helm, ingress, service identity and operational verification.</p>
+                <a className="text-link" href="/blog/mern-eks/">Read article <ArrowUpRight size={16} /></a>
+              </article>
             </div>
           </div>
         </section>

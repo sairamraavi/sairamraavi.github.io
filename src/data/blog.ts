@@ -250,9 +250,69 @@ export const posts: Post[] = [
     title: "Deploying a Containerized MERN Application to Amazon EKS",
     category: "Kubernetes",
     description:
-      "A draft walkthrough of ECR, EKS, Helm, ingress and observability decisions.",
-    publishedAt: "2026-07-22",
-    tags: ["Kubernetes", "AWS", "Docker"],
-    draft: true,
+      "A practical path for moving a containerized MERN service from source control to Amazon ECR, EKS, ingress and observable production operations.",
+    publishedAt: "2026-09-06",
+    tags: ["Kubernetes", "AWS", "EKS", "Docker", "MERN"],
+    sections: [
+      {
+        heading: "The delivery path",
+        paragraphs: [
+          "A MERN application is more than a React build and an Express API. In a production deployment, the image supply chain, database boundary, network entry point, service identity, rollout behaviour and observability are all part of the application. EKS is useful when those concerns need a consistent operating model across services, but it introduces a platform that must be deliberately managed.",
+          "This walkthrough uses separate frontend and API images, Amazon ECR as the private registry, EKS for orchestration, a Kubernetes ClusterIP service behind ingress, and managed MongoDB rather than running a stateful database as an early cluster exercise. It is a reference architecture, not a claim that every MERN workload requires Kubernetes.",
+        ],
+        code: "GitHub change\n   │\n   ▼\nCI: test → build immutable images → scan → push\n   │                                      │\n   ▼                                      ▼\nHelm values with image SHA              Amazon ECR\n   │                                      │\n   └──────────────► Amazon EKS ◄─────────┘\n                       │\n        ┌──────────────┼──────────────┐\n        ▼              ▼              ▼\n   Ingress/ALB   React frontend   Express API\n                                      │\n                                      ▼\n                           MongoDB Atlas / managed database",
+      },
+      {
+        heading: "Repository boundaries",
+        paragraphs: ["Keep deployment code beside the application, but keep runtime secrets outside the repository. This layout allows a code review to inspect an application change and the manifest that deploys it together."],
+        code: "mern-eks/\n├── client/                 # React application\n│   ├── src/\n│   └── Dockerfile\n├── server/                 # Express API\n│   ├── src/\n│   ├── tests/\n│   └── Dockerfile\n├── helm/mern/\n│   ├── Chart.yaml\n│   ├── values.yaml\n│   └── templates/\n│       ├── api-deployment.yaml\n│       ├── api-service.yaml\n│       ├── frontend-deployment.yaml\n│       ├── frontend-service.yaml\n│       ├── ingress.yaml\n│       └── serviceaccount.yaml\n├── scripts/\n│   ├── build-and-push.sh\n│   └── verify.sh\n└── Jenkinsfile",
+      },
+      {
+        heading: "Create the ECR repositories and EKS access context",
+        paragraphs: ["Create a dedicated repository per deployable image. Give the CI identity ECR push permissions and the EKS deployment identity only the Kubernetes access it requires. Do not use a long-lived administrator key in CI; use an IAM role or workload identity with a short session."],
+        code: "export AWS_REGION=ap-south-1\nexport CLUSTER_NAME=platform-eks\nexport AWS_ACCOUNT_ID=123456789012\nexport FRONTEND_REPO=mern-frontend\nexport API_REPO=mern-api\n\naws ecr create-repository --repository-name \"$FRONTEND_REPO\" --image-scanning-configuration scanOnPush=true --image-tag-mutability IMMUTABLE --region \"$AWS_REGION\"\naws ecr create-repository --repository-name \"$API_REPO\" --image-scanning-configuration scanOnPush=true --image-tag-mutability IMMUTABLE --region \"$AWS_REGION\"\n\naws eks update-kubeconfig --name \"$CLUSTER_NAME\" --region \"$AWS_REGION\"\nkubectl create namespace mern-production\nkubectl get nodes -o wide\nkubectl auth can-i create deployments -n mern-production",
+      },
+      {
+        heading: "Build, tag and push immutable images",
+        paragraphs: ["Use a commit SHA as the deployment input. A mutable `latest` tag makes it harder to identify the code actually running and makes rollback ambiguous. The script below creates both a human-readable build tag and a commit tag, then Helm deploys the commit tag."],
+        code: "#!/usr/bin/env bash\n# scripts/build-and-push.sh\nset -euo pipefail\n: \"${AWS_REGION:=ap-south-1}\"\n: \"${AWS_ACCOUNT_ID:?set AWS_ACCOUNT_ID}\"\nGIT_SHA=$(git rev-parse --short=12 HEAD)\nREGISTRY=\"${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com\"\n\naws ecr get-login-password --region \"$AWS_REGION\" | docker login --username AWS --password-stdin \"$REGISTRY\"\nfor spec in \"frontend:client\" \"api:server\"; do\n  component=${spec%%:*}\n  directory=${spec##*:}\n  image=\"$REGISTRY/mern-$component:$GIT_SHA\"\n  docker build --pull --tag \"$image\" \"./$directory\"\n  docker push \"$image\"\ndone\nprintf '%s\\n' \"$GIT_SHA\"",
+      },
+      {
+        heading: "Container hardening for the API",
+        paragraphs: ["Use a multi-stage build, run Node as a non-root user, and make the process fail quickly on unhandled promise rejections. Add a health endpoint that verifies process availability without exposing configuration or secrets."],
+        code: "# server/Dockerfile\nFROM node:22-alpine AS dependencies\nWORKDIR /app\nCOPY package*.json ./\nRUN npm ci --omit=dev\n\nFROM node:22-alpine\nENV NODE_ENV=production\nWORKDIR /app\nCOPY --from=dependencies /app/node_modules ./node_modules\nCOPY --chown=node:node package*.json ./\nCOPY --chown=node:node src ./src\nUSER node\nEXPOSE 3000\nHEALTHCHECK --interval=30s --timeout=3s --start-period=15s --retries=3 CMD node -e \"fetch('http://127.0.0.1:3000/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))\"\nCMD [\"node\", \"--unhandled-rejections=strict\", \"src/index.js\"]\n\n// server/src/index.js\nimport express from 'express';\nconst app = express();\napp.use(express.json());\napp.get('/health', (_req, res) => res.status(200).json({ status: 'ok' }));\napp.get('/api/v1/status', (_req, res) => res.json({ service: 'api', status: 'ready' }));\napp.listen(process.env.PORT || 3000, '0.0.0.0');",
+      },
+      {
+        heading: "Helm values: make runtime configuration explicit",
+        paragraphs: ["Keep public, non-secret configuration in values files. Reference secrets by name rather than placing credentials in Helm values or command history. A separate values file per environment lets the chart remain predictable while deployment inputs differ."],
+        code: "# helm/mern/values.yaml\nnamespace: mern-production\nimage:\n  registry: 123456789012.dkr.ecr.ap-south-1.amazonaws.com\n  tag: replace-at-deploy\nfrontend:\n  repository: mern-frontend\n  replicas: 2\n  containerPort: 80\napi:\n  repository: mern-api\n  replicas: 2\n  containerPort: 3000\n  serviceAccountName: mern-api\n  existingSecret: mern-api-runtime\n  resources:\n    requests: { cpu: 100m, memory: 128Mi }\n    limits: { cpu: 500m, memory: 512Mi }\ningress:\n  className: alb\n  host: app.example.com",
+      },
+      {
+        heading: "Deployment, service and health probes",
+        paragraphs: ["A rolling update needs more than replicas. Readiness prevents traffic reaching a container before the API is ready, while liveness lets Kubernetes restart a stuck process. Set realistic resource requests and limits from measurements, then use Horizontal Pod Autoscaler only after metrics-server and baseline capacity are in place."],
+        code: "# helm/mern/templates/api-deployment.yaml\napiVersion: apps/v1\nkind: Deployment\nmetadata: { name: mern-api, namespace: {{ .Values.namespace }} }\nspec:\n  replicas: {{ .Values.api.replicas }}\n  strategy: { type: RollingUpdate, rollingUpdate: { maxUnavailable: 0, maxSurge: 1 } }\n  selector: { matchLabels: { app: mern-api } }\n  template:\n    metadata: { labels: { app: mern-api } }\n    spec:\n      serviceAccountName: {{ .Values.api.serviceAccountName }}\n      securityContext: { runAsNonRoot: true }\n      containers:\n        - name: api\n          image: \"{{ .Values.image.registry }}/{{ .Values.api.repository }}:{{ .Values.image.tag }}\"\n          ports: [{ containerPort: 3000, name: http }]\n          envFrom: [{ secretRef: { name: {{ .Values.api.existingSecret }} } }]\n          resources: {{- toYaml .Values.api.resources | nindent 12 }}\n          readinessProbe: { httpGet: { path: /health, port: http }, initialDelaySeconds: 5, periodSeconds: 10 }\n          livenessProbe: { httpGet: { path: /health, port: http }, initialDelaySeconds: 20, periodSeconds: 20 }\n          securityContext: { allowPrivilegeEscalation: false, readOnlyRootFilesystem: true, capabilities: { drop: [\"ALL\"] } }\n---\napiVersion: v1\nkind: Service\nmetadata: { name: mern-api, namespace: {{ .Values.namespace }} }\nspec:\n  type: ClusterIP\n  selector: { app: mern-api }\n  ports: [{ name: http, port: 80, targetPort: http }]",
+      },
+      {
+        heading: "Ingress and AWS identity for workloads",
+        paragraphs: ["Expose services through an ingress controller rather than giving every service a public load balancer. The AWS Load Balancer Controller requires its own properly scoped IAM role. For application-level AWS access such as S3 uploads, map a specific Kubernetes service account to a specific IAM role using IRSA (or EKS Pod Identity); do not rely on the node role or bake keys into an image."],
+        code: "# helm/mern/templates/ingress.yaml\napiVersion: networking.k8s.io/v1\nkind: Ingress\nmetadata:\n  name: mern\n  namespace: {{ .Values.namespace }}\n  annotations:\n    alb.ingress.kubernetes.io/scheme: internet-facing\n    alb.ingress.kubernetes.io/target-type: ip\n    alb.ingress.kubernetes.io/listen-ports: '[{\"HTTP\":80},{\"HTTPS\":443}]'\n    alb.ingress.kubernetes.io/ssl-redirect: '443'\nspec:\n  ingressClassName: {{ .Values.ingress.className }}\n  rules:\n    - host: {{ .Values.ingress.host }}\n      http:\n        paths:\n          - path: /api\n            pathType: Prefix\n            backend: { service: { name: mern-api, port: { number: 80 } } }\n          - path: /\n            pathType: Prefix\n            backend: { service: { name: mern-frontend, port: { number: 80 } } }\n\n# Create an API service account with a pre-created least-privilege IAM policy\neksctl create iamserviceaccount --cluster \"$CLUSTER_NAME\" --region \"$AWS_REGION\" --namespace mern-production --name mern-api --attach-policy-arn arn:aws:iam::123456789012:policy/MernApiS3Uploads --approve --override-existing-serviceaccounts",
+      },
+      {
+        heading: "Deploy and verify the release",
+        paragraphs: ["Use `--atomic` and `--wait` so Helm reverts the release automatically if Kubernetes cannot make the new version ready before the timeout. This protects the deployment operation, but it does not replace API smoke tests or monitoring after traffic begins flowing."],
+        code: "export IMAGE_TAG=$(git rev-parse --short=12 HEAD)\nhelm upgrade --install mern ./helm/mern --namespace mern-production --create-namespace --set image.tag=\"$IMAGE_TAG\" --atomic --wait --timeout 10m\n\nkubectl rollout status deployment/mern-api -n mern-production --timeout=5m\nkubectl get pods,svc,ingress -n mern-production\nkubectl describe ingress mern -n mern-production\nALB_DNS=$(kubectl get ingress mern -n mern-production -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')\ncurl --fail --silent \"https://$ALB_DNS/api/v1/status\"\n\n# Review the previous revision and roll back deliberately if needed\nhelm history mern -n mern-production\nhelm rollback mern 1 -n mern-production --wait --timeout 10m",
+      },
+      {
+        heading: "Operational checklist and common failure modes",
+        bullets: [
+          "Confirm every running Pod uses the intended immutable image: `kubectl get pods -n mern-production -o jsonpath='{..image}'`.",
+          "If an image cannot be pulled, verify the image tag exists in ECR, node or pod ECR permissions, and that private subnets can reach ECR through NAT or VPC endpoints.",
+          "If Pods are Pending, inspect `kubectl describe pod`; common causes are a request larger than available node capacity, a missing PVC, a taint, or an unsatisfied affinity rule.",
+          "If ingress has no address, inspect the AWS Load Balancer Controller logs and its IAM policy, subnets and ingress annotations.",
+          "Do not log MongoDB connection strings, JWT secrets or AWS credentials. Store runtime secrets in a secrets manager and synchronize or inject them through a controlled mechanism.",
+          "Monitor API latency, error rate, restart count, HPA behaviour, node pressure and ALB target health. An EKS deployment is healthy only when both Kubernetes and the user-facing path are healthy.",
+        ],
+      },
+    ],
   },
 ];
