@@ -47,3 +47,8 @@
 .article li { color: var(--muted); margin-bottom: 0.75rem; }
 .article pre { overflow-x: auto; margin: 1.5rem 0; padding: 1.25rem; border: 1px solid #233653; background: #0d1726; color: #e8f1ff; font-size: 0.82rem; line-height: 1.65; }
 .article code { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
+.article-table-wrap { overflow-x: auto; margin: 1.5rem 0; border: 1px solid var(--line); }
+.article table { border-collapse: collapse; width: 100%; min-width: 620px; font-size: 0.86rem; }
+.article th, .article td { padding: 0.8rem 0.9rem; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); }
+.article th { color: var(--ink); background: var(--soft); font-size: 0.75rem; letter-spacing: 0.05em; text-transform: uppercase; }
+.article td { color: var(--muted); }

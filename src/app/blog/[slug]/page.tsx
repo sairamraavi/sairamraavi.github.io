@@ -52,6 +52,14 @@ export default async function Post({
                 ))}
               </ul>
             )}
+            {section.table && (
+              <div className="article-table-wrap">
+                <table>
+                  <thead><tr>{section.table.headers.map((header) => <th key={header}>{header}</th>)}</tr></thead>
+                  <tbody>{section.table.rows.map((row) => <tr key={row.join("|")}>{row.map((cell, index) => <td key={`${cell}-${index}`}>{cell}</td>)}</tr>)}</tbody>
+                </table>
+              </div>
+            )}
             {section.code && (
               <pre>
                 <code>{section.code}</code>

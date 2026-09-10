@@ -258,6 +258,12 @@ export default function Home() {
                 <p>A practical source-to-ECR-to-EKS deployment path covering Helm, ingress, service identity and operational verification.</p>
                 <a className="text-link" href="/blog/mern-eks/">Read article <ArrowUpRight size={16} /></a>
               </article>
+              <article className="project-card published-post">
+                <p className="eyebrow">CI/CD · Published</p>
+                <h3>GitHub & GitHub Actions for DevOps</h3>
+                <p>A hands-on path from Git fundamentals and pull requests to secure OIDC, ECR, EKS, Terraform and production CI/CD.</p>
+                <a className="text-link" href="/blog/github-github-actions-devops/">Read article <ArrowUpRight size={16} /></a>
+              </article>
             </div>
           </div>
         </section>

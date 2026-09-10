@@ -1,8 +1,12 @@
+import { githubActionsPost } from "./github-actions-guide";
+
+export type ArticleTable = { headers: string[]; rows: string[][] };
 export type ArticleSection = {
   heading: string;
   paragraphs?: string[];
   bullets?: string[];
   code?: string;
+  table?: ArticleTable;
 };
 export type Post = {
   slug: string;
@@ -315,4 +319,5 @@ export const posts: Post[] = [
       },
     ],
   },
+  githubActionsPost,
 ];
