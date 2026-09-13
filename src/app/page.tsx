@@ -8,7 +8,6 @@ import {
 } from "lucide-react";
 import { ExternalLink, Nav } from "@/components/site";
 import { ContactSection } from "@/components/contact";
-import { DeveloperSignal } from "@/components/developer-signal";
 import { ProjectShowcase } from "@/components/projects";
 import { experience } from "@/data/experience";
 import { profile } from "@/data/profile";
@@ -70,10 +69,7 @@ export default function Home() {
             <p className="eyebrow">
               Senior Software Engineer <i /> Full-Stack <i /> Cloud & DevOps
             </p>
-            <h1>
-              I build reliable digital products and the systems that deliver
-              them.
-            </h1>
+            <h1>I engineer the path from product to production.</h1>
             <p className="lede">{profile.summary}</p>
             <div className="button-row">
               <a className="button primary" href="#projects">
@@ -113,7 +109,20 @@ export default function Home() {
                 <b>7+ years</b>
               </div>
             </div>
-            <DeveloperSignal />
+            <div className="proof-strip" aria-label="Professional highlights">
+              <div>
+                <strong>7+ years</strong>
+                <span>Enterprise application engineering</span>
+              </div>
+              <div>
+                <strong>Full stack</strong>
+                <span>Interfaces, APIs and CMS delivery</span>
+              </div>
+              <div>
+                <strong>Cloud delivery</strong>
+                <span>AWS, CI/CD and container practice</span>
+              </div>
+            </div>
           </div>
         </section>
         <section id="about" className="section summary">
@@ -123,8 +132,8 @@ export default function Home() {
             <p>
               My professional foundation is enterprise application work:
               translating product and Figma requirements into dependable
-              interfaces, integrating APIs, and maintaining Drupal, PHP and Angular
-              systems. Alongside releases and production
+              interfaces, integrating APIs, and maintaining Drupal, PHP and
+              Angular systems. Alongside releases and production
               troubleshooting, I’m applying that experience to cloud
               infrastructure and delivery automation.
             </p>
@@ -180,10 +189,10 @@ export default function Home() {
         <section id="projects" className="section">
           <div className="section-label">04 / Selected work</div>
           <div>
-            <h2>Hands-on systems work, clearly scoped.</h2>
+            <h2>Selected systems, built to deliver.</h2>
             <p className="section-intro">
-              Projects below are personal engineering work and learning labs—not
-              commercial production claims.
+              A current selection of hands-on cloud, automation and delivery
+              projects from GitHub—presented with clear scope and evidence.
             </p>
             <ProjectShowcase />
           </div>
@@ -231,38 +240,82 @@ export default function Home() {
           <div>
             <h2>Notes from the learning path.</h2>
             <p className="section-intro">
-              Practical notes on delivery, cloud services and the decisions behind them.
+              Practical notes on delivery, cloud services and the decisions
+              behind them.
             </p>
             <div className="project-grid">
               <article className="project-card published-post">
                 <p className="eyebrow">AWS · Published</p>
                 <h3>A practical AWS Lambda guide for event-driven workloads</h3>
-                <p>How to choose a trigger, shape a handler, keep permissions narrow and operate a Lambda function once it reaches production.</p>
-                <a className="text-link" href="/blog/aws-lambda-practical-guide/">Read article <ArrowUpRight size={16} /></a>
+                <p>
+                  How to choose a trigger, shape a handler, keep permissions
+                  narrow and operate a Lambda function once it reaches
+                  production.
+                </p>
+                <a
+                  className="text-link"
+                  href="/blog/aws-lambda-practical-guide/"
+                >
+                  Read article <ArrowUpRight size={16} />
+                </a>
               </article>
               <article className="project-card published-post">
                 <p className="eyebrow">Career · Published</p>
-                <h3>From Full-Stack Development to DevOps: My Learning Roadmap</h3>
-                <p>How I am extending application engineering experience into cloud delivery, automation and platform reliability through hands-on work.</p>
-                <a className="text-link" href="/blog/full-stack-to-devops-roadmap/">Read article <ArrowUpRight size={16} /></a>
+                <h3>
+                  From Full-Stack Development to DevOps: My Learning Roadmap
+                </h3>
+                <p>
+                  How I am extending application engineering experience into
+                  cloud delivery, automation and platform reliability through
+                  hands-on work.
+                </p>
+                <a
+                  className="text-link"
+                  href="/blog/full-stack-to-devops-roadmap/"
+                >
+                  Read article <ArrowUpRight size={16} />
+                </a>
               </article>
               <article className="project-card published-post">
                 <p className="eyebrow">CI/CD · Published</p>
-                <h3>Building a Production-Ready Jenkins CI/CD Pipeline for Flask on AWS</h3>
-                <p>A concrete Jenkins, Docker, ECR and Nginx deployment path for a Flask service on AWS EC2.</p>
-                <a className="text-link" href="/blog/jenkins-flask-aws/">Read article <ArrowUpRight size={16} /></a>
+                <h3>
+                  Building a Production-Ready Jenkins CI/CD Pipeline for Flask
+                  on AWS
+                </h3>
+                <p>
+                  A concrete Jenkins, Docker, ECR and Nginx deployment path for
+                  a Flask service on AWS EC2.
+                </p>
+                <a className="text-link" href="/blog/jenkins-flask-aws/">
+                  Read article <ArrowUpRight size={16} />
+                </a>
               </article>
               <article className="project-card published-post">
                 <p className="eyebrow">Kubernetes · Published</p>
-                <h3>Deploying a Containerized MERN Application to Amazon EKS</h3>
-                <p>A practical source-to-ECR-to-EKS deployment path covering Helm, ingress, service identity and operational verification.</p>
-                <a className="text-link" href="/blog/mern-eks/">Read article <ArrowUpRight size={16} /></a>
+                <h3>
+                  Deploying a Containerized MERN Application to Amazon EKS
+                </h3>
+                <p>
+                  A practical source-to-ECR-to-EKS deployment path covering
+                  Helm, ingress, service identity and operational verification.
+                </p>
+                <a className="text-link" href="/blog/mern-eks/">
+                  Read article <ArrowUpRight size={16} />
+                </a>
               </article>
               <article className="project-card published-post">
                 <p className="eyebrow">CI/CD · Published</p>
                 <h3>GitHub & GitHub Actions for DevOps</h3>
-                <p>A hands-on path from Git fundamentals and pull requests to secure OIDC, ECR, EKS, Terraform and production CI/CD.</p>
-                <a className="text-link" href="/blog/github-github-actions-devops/">Read article <ArrowUpRight size={16} /></a>
+                <p>
+                  A hands-on path from Git fundamentals and pull requests to
+                  secure OIDC, ECR, EKS, Terraform and production CI/CD.
+                </p>
+                <a
+                  className="text-link"
+                  href="/blog/github-github-actions-devops/"
+                >
+                  Read article <ArrowUpRight size={16} />
+                </a>
               </article>
             </div>
           </div>
