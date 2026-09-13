@@ -96,7 +96,7 @@ export const posts: Post[] = [
       {
         heading: "Why this is an extension, not a reset",
         paragraphs: [
-          "My foundation is full-stack application engineering: turning product requirements into responsive interfaces, integrating APIs, working across Drupal, PHP, Angular and .NET systems, and helping troubleshoot releases in production. That work taught me that a feature is only useful when it can be delivered, observed and supported reliably.",
+          "My foundation is full-stack application engineering: turning product requirements into responsive interfaces, integrating APIs, working across Drupal, PHP and Angular systems, and helping troubleshoot releases in production. That work taught me that a feature is only useful when it can be delivered, observed and supported reliably.",
           "DevOps is the next layer of that responsibility for me. It connects the code I build to the way it is packaged, tested, deployed, monitored and improved. The goal is not to move away from application engineering; it is to become more effective across the full path from an idea to a dependable production service.",
         ],
       },

@@ -123,8 +123,8 @@ export default function Home() {
             <p>
               My professional foundation is enterprise application work:
               translating product and Figma requirements into dependable
-              interfaces, integrating APIs, and maintaining Drupal, PHP, Angular
-              and .NET systems. Alongside releases and production
+              interfaces, integrating APIs, and maintaining Drupal, PHP and Angular
+              systems. Alongside releases and production
               troubleshooting, I’m applying that experience to cloud
               infrastructure and delivery automation.
             </p>
