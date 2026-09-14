@@ -38,7 +38,7 @@
 
 .contact-card {
   border: 1px solid var(--line);
-  border-radius: 0.75rem;
+  border-radius: 1rem;
   background: color-mix(in srgb, var(--panel) 92%, transparent);
   box-shadow: var(--shadow);
   padding: clamp(1.35rem, 3vw, 2.6rem);

@@ -31,9 +31,7 @@ export function Nav() {
 
   useEffect(() => {
     const saved = localStorage.getItem("theme");
-    const isDark = saved
-      ? saved === "dark"
-      : window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const isDark = saved ? saved === "dark" : true;
     setDark(isDark);
     document.documentElement.dataset.theme = isDark ? "dark" : "light";
 

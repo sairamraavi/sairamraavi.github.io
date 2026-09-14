@@ -8,6 +8,7 @@ import {
 } from "lucide-react";
 import { ExternalLink, Nav } from "@/components/site";
 import { ContactSection } from "@/components/contact";
+import { DeveloperSignal } from "@/components/developer-signal";
 import { ProjectShowcase } from "@/components/projects";
 import { experience } from "@/data/experience";
 import { profile } from "@/data/profile";
@@ -109,24 +110,11 @@ export default function Home() {
                 <b>7+ years</b>
               </div>
             </div>
-            <div className="proof-strip" aria-label="Professional highlights">
-              <div>
-                <strong>7+ years</strong>
-                <span>Enterprise application engineering</span>
-              </div>
-              <div>
-                <strong>Full stack</strong>
-                <span>Interfaces, APIs and CMS delivery</span>
-              </div>
-              <div>
-                <strong>Cloud delivery</strong>
-                <span>AWS, CI/CD and container practice</span>
-              </div>
-            </div>
+            <DeveloperSignal />
           </div>
         </section>
         <section id="about" className="section summary">
-          <div className="section-label">01 / Foundation</div>
+          <div className="section-label">Foundation</div>
           <div>
             <h2>Engineering across applications, platforms and delivery.</h2>
             <p>
@@ -151,7 +139,7 @@ export default function Home() {
           </div>
         </section>
         <section id="experience" className="section">
-          <div className="section-label">02 / Experience</div>
+          <div className="section-label">Experience</div>
           <div className="timeline">
             {experience.map((item) => (
               <article className="timeline-item" key={item.role}>
@@ -172,7 +160,7 @@ export default function Home() {
           </div>
         </section>
         <section id="expertise" className="section">
-          <div className="section-label">03 / Expertise</div>
+          <div className="section-label">Expertise</div>
           <div>
             <h2>Capabilities grounded in delivery.</h2>
             <div className="skill-grid">
@@ -187,7 +175,7 @@ export default function Home() {
           </div>
         </section>
         <section id="projects" className="section">
-          <div className="section-label">04 / Selected work</div>
+          <div className="section-label">Selected work</div>
           <div>
             <h2>Selected systems, built to deliver.</h2>
             <p className="section-intro">
@@ -198,7 +186,7 @@ export default function Home() {
           </div>
         </section>
         <section id="learning" className="section learning">
-          <div className="section-label">05 / Learning journey</div>
+          <div className="section-label">Learning journey</div>
           <div>
             <h2>Continuous learning, applied through real systems.</h2>
             <p>
@@ -221,7 +209,7 @@ export default function Home() {
           </div>
         </section>
         <section className="section approach">
-          <div className="section-label">06 / Approach</div>
+          <div className="section-label">Approach</div>
           <div>
             <h2>How I approach engineering work.</h2>
             <div className="principles">
@@ -236,7 +224,7 @@ export default function Home() {
           </div>
         </section>
         <section id="blog" className="section blog-preview">
-          <div className="section-label">07 / Writing</div>
+          <div className="section-label">Writing</div>
           <div>
             <h2>Notes from the learning path.</h2>
             <p className="section-intro">
@@ -321,7 +309,7 @@ export default function Home() {
           </div>
         </section>
         <section className="section github">
-          <div className="section-label">08 / Open source</div>
+          <div className="section-label">Open source</div>
           <div>
             <h2>Build notes live on GitHub.</h2>
             <p>
@@ -334,7 +322,7 @@ export default function Home() {
           </div>
         </section>
         <section className="section education">
-          <div className="section-label">09 / Education & credentials</div>
+          <div className="section-label">Education & credentials</div>
           <div className="credential">
             <div>
               <p className="eyebrow">Education</p>

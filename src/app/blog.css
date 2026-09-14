@@ -62,7 +62,7 @@
   flex-direction: column;
   padding: 1.7rem;
   border: 1px solid var(--line);
-  border-radius: 0.75rem;
+  border-radius: 1rem;
   background: var(--panel);
   transition:
     transform 0.2s ease,
@@ -129,13 +129,13 @@
   overflow-x: auto;
   margin: 1.5rem 0;
   padding: 1.25rem 1.35rem;
-  border: 1px solid #263b5c;
+  border: 1px solid var(--code-border);
   border-radius: 0.5rem;
-  background: #0b1422;
-  color: #eaf2ff;
+  background: var(--code-bg);
+  color: var(--code-text);
   font-size: 0.8rem;
   line-height: 1.7;
-  box-shadow: 0 16px 35px color-mix(in srgb, #050a12 18%, transparent);
+  box-shadow: 0 16px 35px color-mix(in srgb, #000 18%, transparent);
 }
 .article-body code {
   font-family: var(--font-mono);

@@ -37,70 +37,86 @@ export function ProjectShowcase() {
           </button>
         ))}
       </div>
-      <div className="featured-projects">
-        {featured.map((p, i) => (
-          <article className="featured" key={p.title}>
-            <div className="project-index">0{i + 1}</div>
-            <div>
-              <p className="eyebrow">{p.label}</p>
-              <h3>{p.title}</h3>
-              <p>{p.description}</p>
-              <div
-                className="architecture"
-                aria-label={`${p.title} architecture`}
-              >
-                <span>Source</span>
-                <b>→</b>
-                <span>Build</span>
-                <b>→</b>
-                <span>Registry</span>
-                <b>→</b>
-                <span>Deploy</span>
-                <b>→</b>
-                <span>Operate</span>
+      {featured.length > 0 && (
+        <div className="featured-projects">
+          <div className="project-group-heading">
+            <span>Featured engineering projects</span>
+            <p>Problem, architecture, implementation and operational scope.</p>
+          </div>
+          {featured.map((p, i) => (
+            <article className="featured" key={p.title}>
+              <div className="project-index">0{i + 1}</div>
+              <div>
+                <p className="eyebrow">{p.label}</p>
+                <h3>{p.title}</h3>
+                <p>{p.description}</p>
+                <div
+                  className="architecture"
+                  aria-label={`${p.title} architecture`}
+                >
+                  <span>Source</span>
+                  <b>→</b>
+                  <span>Build</span>
+                  <b>→</b>
+                  <span>Registry</span>
+                  <b>→</b>
+                  <span>Deploy</span>
+                  <b>→</b>
+                  <span>Operate</span>
+                </div>
+                <div className="architecture-notes">
+                  {p.details?.map((d) => (
+                    <p key={d}>{d}</p>
+                  ))}
+                </div>
+                <div className="tags">
+                  {p.tags.map((t) => (
+                    <span key={t}>{t}</span>
+                  ))}
+                </div>
+                <a
+                  className="text-link"
+                  href={p.href}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  View repository <ArrowUpRight size={16} />
+                </a>
               </div>
-              <div className="architecture-notes">
-                {p.details?.map((d) => (
-                  <p key={d}>{d}</p>
-                ))}
-              </div>
-              <div className="tags">
-                {p.tags.map((t) => (
-                  <span key={t}>{t}</span>
-                ))}
-              </div>
-              <a
-                className="text-link"
-                href={p.href}
-                target="_blank"
-                rel="noreferrer"
-              >
-                View repository <ArrowUpRight size={16} />
-              </a>
-            </div>
-          </article>
-        ))}
-      </div>
+            </article>
+          ))}
+        </div>
+      )}
       {!visible.length && (
         <p className="empty-state">No projects match this filter yet.</p>
       )}
-      <div className="project-grid">
-        {supporting.map((p) => (
-          <article className="project-card" key={p.title}>
-            <p className="eyebrow">{p.label}</p>
-            <h3>{p.title}</h3>
-            <p>{p.description}</p>
-            <a
-              className="text-link"
-              href={p.href}
-              target="_blank"
-              rel="noreferrer"
-            >
-              Repository <ArrowUpRight size={16} />
-            </a>
-          </article>
-        ))}
-      </div>
+      {supporting.length > 0 && (
+        <div className="supporting-projects">
+          <div className="project-group-heading">
+            <span>Labs & learning projects</span>
+            <p>
+              Focused practice across cloud, automation and delivery tooling.
+            </p>
+          </div>
+          <div className="project-grid">
+            {supporting.map((p) => (
+              <article className="project-card" key={p.title}>
+                <p className="eyebrow">{p.label}</p>
+                <h3>{p.title}</h3>
+                <p>{p.description}</p>
+                <a
+                  className="text-link"
+                  href={p.href}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Repository <ArrowUpRight size={16} />
+                </a>
+              </article>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
