@@ -22,8 +22,8 @@
   font-weight: 900;
   letter-spacing: -0.08em;
 }
-.blog-nav .brand span {
-  color: var(--accent);
+.blog-nav .brand-name {
+  color: var(--ink);
 }
 .blog-nav nav {
   display: flex;
