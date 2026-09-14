@@ -70,10 +70,7 @@ export default function Home() {
             <p className="eyebrow">
               Senior Software Engineer <i /> Full-Stack <i /> Cloud & DevOps
             </p>
-            <h1>
-              I build reliable digital products and the systems that deliver
-              them.
-            </h1>
+            <h1>I engineer the path from product to production.</h1>
             <p className="lede">{profile.summary}</p>
             <div className="button-row">
               <a className="button primary" href="#projects">
@@ -117,14 +114,14 @@ export default function Home() {
           </div>
         </section>
         <section id="about" className="section summary">
-          <div className="section-label">01 / Foundation</div>
+          <div className="section-label">Foundation</div>
           <div>
             <h2>Engineering across applications, platforms and delivery.</h2>
             <p>
               My professional foundation is enterprise application work:
               translating product and Figma requirements into dependable
-              interfaces, integrating APIs, and maintaining Drupal, PHP and Angular
-              systems. Alongside releases and production
+              interfaces, integrating APIs, and maintaining Drupal, PHP and
+              Angular systems. Alongside releases and production
               troubleshooting, I’m applying that experience to cloud
               infrastructure and delivery automation.
             </p>
@@ -142,7 +139,7 @@ export default function Home() {
           </div>
         </section>
         <section id="experience" className="section">
-          <div className="section-label">02 / Experience</div>
+          <div className="section-label">Experience</div>
           <div className="timeline">
             {experience.map((item) => (
               <article className="timeline-item" key={item.role}>
@@ -163,7 +160,7 @@ export default function Home() {
           </div>
         </section>
         <section id="expertise" className="section">
-          <div className="section-label">03 / Expertise</div>
+          <div className="section-label">Expertise</div>
           <div>
             <h2>Capabilities grounded in delivery.</h2>
             <div className="skill-grid">
@@ -178,18 +175,18 @@ export default function Home() {
           </div>
         </section>
         <section id="projects" className="section">
-          <div className="section-label">04 / Selected work</div>
+          <div className="section-label">Selected work</div>
           <div>
-            <h2>Hands-on systems work, clearly scoped.</h2>
+            <h2>Selected systems, built to deliver.</h2>
             <p className="section-intro">
-              Projects below are personal engineering work and learning labs—not
-              commercial production claims.
+              A current selection of hands-on cloud, automation and delivery
+              projects from GitHub—presented with clear scope and evidence.
             </p>
             <ProjectShowcase />
           </div>
         </section>
         <section id="learning" className="section learning">
-          <div className="section-label">05 / Learning journey</div>
+          <div className="section-label">Learning journey</div>
           <div>
             <h2>Continuous learning, applied through real systems.</h2>
             <p>
@@ -212,7 +209,7 @@ export default function Home() {
           </div>
         </section>
         <section className="section approach">
-          <div className="section-label">06 / Approach</div>
+          <div className="section-label">Approach</div>
           <div>
             <h2>How I approach engineering work.</h2>
             <div className="principles">
@@ -227,48 +224,92 @@ export default function Home() {
           </div>
         </section>
         <section id="blog" className="section blog-preview">
-          <div className="section-label">07 / Writing</div>
+          <div className="section-label">Writing</div>
           <div>
             <h2>Notes from the learning path.</h2>
             <p className="section-intro">
-              Practical notes on delivery, cloud services and the decisions behind them.
+              Practical notes on delivery, cloud services and the decisions
+              behind them.
             </p>
             <div className="project-grid">
               <article className="project-card published-post">
                 <p className="eyebrow">AWS · Published</p>
                 <h3>A practical AWS Lambda guide for event-driven workloads</h3>
-                <p>How to choose a trigger, shape a handler, keep permissions narrow and operate a Lambda function once it reaches production.</p>
-                <a className="text-link" href="/blog/aws-lambda-practical-guide/">Read article <ArrowUpRight size={16} /></a>
+                <p>
+                  How to choose a trigger, shape a handler, keep permissions
+                  narrow and operate a Lambda function once it reaches
+                  production.
+                </p>
+                <a
+                  className="text-link"
+                  href="/blog/aws-lambda-practical-guide/"
+                >
+                  Read article <ArrowUpRight size={16} />
+                </a>
               </article>
               <article className="project-card published-post">
                 <p className="eyebrow">Career · Published</p>
-                <h3>From Full-Stack Development to DevOps: My Learning Roadmap</h3>
-                <p>How I am extending application engineering experience into cloud delivery, automation and platform reliability through hands-on work.</p>
-                <a className="text-link" href="/blog/full-stack-to-devops-roadmap/">Read article <ArrowUpRight size={16} /></a>
+                <h3>
+                  From Full-Stack Development to DevOps: My Learning Roadmap
+                </h3>
+                <p>
+                  How I am extending application engineering experience into
+                  cloud delivery, automation and platform reliability through
+                  hands-on work.
+                </p>
+                <a
+                  className="text-link"
+                  href="/blog/full-stack-to-devops-roadmap/"
+                >
+                  Read article <ArrowUpRight size={16} />
+                </a>
               </article>
               <article className="project-card published-post">
                 <p className="eyebrow">CI/CD · Published</p>
-                <h3>Building a Production-Ready Jenkins CI/CD Pipeline for Flask on AWS</h3>
-                <p>A concrete Jenkins, Docker, ECR and Nginx deployment path for a Flask service on AWS EC2.</p>
-                <a className="text-link" href="/blog/jenkins-flask-aws/">Read article <ArrowUpRight size={16} /></a>
+                <h3>
+                  Building a Production-Ready Jenkins CI/CD Pipeline for Flask
+                  on AWS
+                </h3>
+                <p>
+                  A concrete Jenkins, Docker, ECR and Nginx deployment path for
+                  a Flask service on AWS EC2.
+                </p>
+                <a className="text-link" href="/blog/jenkins-flask-aws/">
+                  Read article <ArrowUpRight size={16} />
+                </a>
               </article>
               <article className="project-card published-post">
                 <p className="eyebrow">Kubernetes · Published</p>
-                <h3>Deploying a Containerized MERN Application to Amazon EKS</h3>
-                <p>A practical source-to-ECR-to-EKS deployment path covering Helm, ingress, service identity and operational verification.</p>
-                <a className="text-link" href="/blog/mern-eks/">Read article <ArrowUpRight size={16} /></a>
+                <h3>
+                  Deploying a Containerized MERN Application to Amazon EKS
+                </h3>
+                <p>
+                  A practical source-to-ECR-to-EKS deployment path covering
+                  Helm, ingress, service identity and operational verification.
+                </p>
+                <a className="text-link" href="/blog/mern-eks/">
+                  Read article <ArrowUpRight size={16} />
+                </a>
               </article>
               <article className="project-card published-post">
                 <p className="eyebrow">CI/CD · Published</p>
                 <h3>GitHub & GitHub Actions for DevOps</h3>
-                <p>A hands-on path from Git fundamentals and pull requests to secure OIDC, ECR, EKS, Terraform and production CI/CD.</p>
-                <a className="text-link" href="/blog/github-github-actions-devops/">Read article <ArrowUpRight size={16} /></a>
+                <p>
+                  A hands-on path from Git fundamentals and pull requests to
+                  secure OIDC, ECR, EKS, Terraform and production CI/CD.
+                </p>
+                <a
+                  className="text-link"
+                  href="/blog/github-github-actions-devops/"
+                >
+                  Read article <ArrowUpRight size={16} />
+                </a>
               </article>
             </div>
           </div>
         </section>
         <section className="section github">
-          <div className="section-label">08 / Open source</div>
+          <div className="section-label">Open source</div>
           <div>
             <h2>Build notes live on GitHub.</h2>
             <p>
@@ -281,7 +322,7 @@ export default function Home() {
           </div>
         </section>
         <section className="section education">
-          <div className="section-label">09 / Education & credentials</div>
+          <div className="section-label">Education & credentials</div>
           <div className="credential">
             <div>
               <p className="eyebrow">Education</p>

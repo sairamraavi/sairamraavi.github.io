@@ -4,6 +4,37 @@ import "./blog.css";
 import "./ui.css";
 import "./contact.css";
 import "./brand.css";
-export const metadata: Metadata = { metadataBase: new URL("https://sairamraavi.github.io"), title: "Sairam Raavi | Senior Full-Stack Engineer", description: "Portfolio of Sairam Raavi, a Senior Software Engineer in Hyderabad with 7+ years of experience in Drupal, PHP, Angular, JavaScript, AWS, Docker, Jenkins and Kubernetes.", alternates:{canonical:"/"}, icons:{icon:"/favicon.svg",shortcut:"/favicon.svg"}, openGraph:{type:"website",url:"/",title:"Sairam Raavi | Senior Full-Stack Engineer",images:["/images/og/sairam-portfolio-og.png"]}, twitter:{card:"summary_large_image"} };
-const themeScript = `try { const t = localStorage.getItem('theme'); document.documentElement.dataset.theme = t || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'); } catch {}`;
-export default function RootLayout({children}:{children:React.ReactNode}) { return <html lang="en" suppressHydrationWarning><head><script dangerouslySetInnerHTML={{__html:themeScript}} /></head><body>{children}</body></html>; }
+export const metadata: Metadata = {
+  metadataBase: new URL("https://sairamraavi.github.io"),
+  title: "Sairam Raavi | Senior Full-Stack Engineer",
+  description:
+    "Portfolio of Sairam Raavi, a Senior Software Engineer in Hyderabad with 7+ years of experience in Drupal, PHP, Angular, JavaScript, AWS, Docker, Jenkins and Kubernetes.",
+  alternates: { canonical: "/" },
+  icons: {
+    icon: [{ url: "/favicon.svg?v=sr-arrow", type: "image/svg+xml" }],
+    shortcut: ["/favicon.svg?v=sr-arrow"],
+    apple: [{ url: "/favicon.svg?v=sr-arrow", type: "image/svg+xml" }],
+  },
+  openGraph: {
+    type: "website",
+    url: "/",
+    title: "Sairam Raavi | Senior Full-Stack Engineer",
+    images: ["/images/og/sairam-portfolio-og.png"],
+  },
+  twitter: { card: "summary_large_image" },
+};
+const themeScript = `try { const t = localStorage.getItem('theme'); document.documentElement.dataset.theme = t || 'dark'; } catch { document.documentElement.dataset.theme = 'dark'; }`;
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
+      <body>{children}</body>
+    </html>
+  );
+}
