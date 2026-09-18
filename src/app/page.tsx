@@ -234,6 +234,17 @@ export default function Home() {
             <div className="project-grid">
               <article className="project-card published-post">
                 <p className="eyebrow">AWS · Published</p>
+                <h3>AWS Fundamentals: A Practical Foundation for Cloud Beginners</h3>
+                <p>
+                  A clear, structured path through AWS infrastructure, core
+                  services, security, cost awareness and practical next steps.
+                </p>
+                <a className="text-link" href="/blog/aws-fundamentals/">
+                  Read article <ArrowUpRight size={16} />
+                </a>
+              </article>
+              <article className="project-card published-post">
+                <p className="eyebrow">AWS · Published</p>
                 <h3>A practical AWS Lambda guide for event-driven workloads</h3>
                 <p>
                   How to choose a trigger, shape a handler, keep permissions

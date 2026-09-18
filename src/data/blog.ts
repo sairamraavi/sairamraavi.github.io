@@ -1,4 +1,5 @@
 import { githubActionsPost } from "./github-actions-guide";
+import { awsFundamentalsPost } from "./aws-fundamentals-guide";
 
 export type ArticleTable = { headers: string[]; rows: string[][] };
 export type ArticleSection = {
@@ -319,5 +320,6 @@ export const posts: Post[] = [
       },
     ],
   },
+  awsFundamentalsPost,
   githubActionsPost,
 ];
