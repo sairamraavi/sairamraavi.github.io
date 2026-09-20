@@ -93,7 +93,8 @@
   padding-top: 4.75rem;
 }
 .article-hero {
-  max-width: none;
+  max-width: 1100px;
+  margin-inline: auto;
   padding: 0 0 3rem;
   border-bottom: 1px solid var(--line);
 }
@@ -113,6 +114,7 @@
 }
 .article-body {
   max-width: 1040px;
+  margin-inline: auto;
   padding-top: 2.25rem;
 }
 .article-body section {
