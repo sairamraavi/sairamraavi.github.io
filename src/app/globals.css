@@ -701,7 +701,7 @@ footer {
   grid-template-columns: 1fr auto;
   gap: 1rem;
   background: var(--footer-bg);
-  color: var(--text-primary);
+  color: var(--code-text);
   font-size: 0.84rem;
   padding: 2rem max(5vw, 24px);
 }
@@ -714,10 +714,16 @@ footer div:nth-child(2) {
   flex-wrap: wrap;
   gap: 1rem;
 }
+footer a {
+  color: var(--code-text);
+}
+footer a:hover {
+  color: var(--brand-primary);
+}
 footer p {
   grid-column: 1 / -1;
   margin: 0;
-  color: var(--text-muted);
+  color: var(--code-muted);
 }
 
 @media (max-width: 900px) {
@@ -729,6 +735,8 @@ footer p {
     display: grid;
   }
   .mobile-menu {
+    display: flex;
+    flex-direction: column;
     position: absolute;
     top: 76px;
     left: 0;
