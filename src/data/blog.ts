@@ -1,5 +1,6 @@
 import { githubActionsPost } from "./github-actions-guide";
 import { awsFundamentalsPost } from "./aws-fundamentals-guide";
+import { agenticAiAwsPost } from "./agentic-ai-aws-guide";
 
 export type ArticleTable = { headers: string[]; rows: string[][] };
 export type ArticleSection = {
@@ -21,6 +22,7 @@ export type Post = {
 };
 
 export const posts: Post[] = [
+  agenticAiAwsPost,
   {
     slug: "aws-lambda-practical-guide",
     title: "AWS Lambda: a practical guide to event-driven workloads",
